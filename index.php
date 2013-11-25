@@ -21,6 +21,7 @@
 		"<th>P/T</th>".
 		"<th>Rules Text</th>".
 		"<th>Flavor Text</th>".
+		"<th>Set/Rarity</th>".
 		"</thead>".
 		"<tbody>";
 		foreach($cardSet['cards'] as $card) {
@@ -29,9 +30,15 @@
 			echo isset($card['name']) ? "<td>".$card['name']."</td>" : "<td></td>";
 			echo isset($card['manaCost']) ? "<td>".strtr($card['manaCost'],array("{"=>"<img src='images/mana/","}"=>".jpg'/>","/W"=>"-W","/R"=>"-R","/B"=>"-B","/U"=>"-U","/G"=>"-G"))."<br /><br /><em>CMC: ".$card['cmc']."</em></td>" : "<td></td>";
 			echo isset($card['type']) ? "<td>".str_replace("—","-",$card['type'])."</td>" : "<td></td>";
+			if(isset($card['power'])) {
+				echo "<td>".$card['power']."/".$card['toughness']."</td>";
+			} elseif(isset($card['loyalty'])) {
+				echo "<td><b>&lsaquo;".$card['loyalty']."&rsaquo;</b></td>";
+			}
 			echo isset($card['power']) ? "<td>".$card['power']."/".$card['toughness']."</td>" : "<td></td>";
-			echo isset($card['text']) ? "<td>".strtr($card['text'],array("{"=>"<img src='images/mana/","}"=>".jpg'/>","/W"=>"-W","/R"=>"-R","/B"=>"-B","/U"=>"-U","/G"=>"-G","\n"=>"<br />"))."</td>" : "<td></td>";
+			echo isset($card['text']) ? "<td>".strtr($card['text'],array("{"=>"<img src='images/mana/","}"=>".jpg'/>","/W"=>"-W","/R"=>"-R","/B"=>"-B","/U"=>"-U","/G"=>"-G","—"=>"-","\n"=>"<br />"))."</td>" : "<td></td>";
 			echo isset($card['flavor']) ? "<td><em>".strtr($card['flavor'],array("—"=>"-"))."</em></td>" : "<td></td>";
+			echo isset($card['rarity']) ? "<td style='text-align:center;'><img src='images/rarity/".$cardSet['code']."-".substr($card['rarity'],0,1).".jpg'/></td>" : "<td></td>";
 			echo "</tr>";
 		}
 		echo "</tbody>".
