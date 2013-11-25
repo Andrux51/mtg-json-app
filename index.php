@@ -34,6 +34,8 @@
 				echo "<td>".$card['power']."/".$card['toughness']."</td>";
 			} elseif(isset($card['loyalty'])) {
 				echo "<td><b>&lsaquo;".$card['loyalty']."&rsaquo;</b></td>";
+			} else {
+				echo "<td></td>";
 			}
 			echo isset($card['power']) ? "<td>".$card['power']."/".$card['toughness']."</td>" : "<td></td>";
 			echo isset($card['text']) ? "<td>".strtr($card['text'],array("{"=>"<img src='images/mana/","}"=>".jpg'/>","/W"=>"-W","/R"=>"-R","/B"=>"-B","/U"=>"-U","/G"=>"-G","—"=>"-","\n"=>"<br />"))."</td>" : "<td></td>";
