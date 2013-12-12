@@ -20,7 +20,7 @@ $("#navTabs a:first").tab('show');
 // 	}
 // }
 
-function showCardModal(cardName,cardSet) {
+function showCardModal(cardName,cardSet,cardImage) {
 	$("#mTitle").html(cardName);
-	$("#cardImage").attr('src','images/sets/'+cardSet+'-original/'+cardName+'.jpg');
+	$("#cardImage").attr('src','images/sets/'+cardSet+'-original/'+cardImage+'.jpg');
 }

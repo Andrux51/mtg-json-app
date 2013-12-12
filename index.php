@@ -15,33 +15,33 @@
 	$mtg_card = "";
 	foreach($j as $cardSet) { 
 		echo "<div class='tab-pane' id='".$cardSet['code']."'>".
-		"<table class='table'><thead>".
-		"<th>Thumbnail</th>".
-		"<th>Name</th>".
-		"<th style='min-width:140px;'>Mana Cost</th>".
-		"<th>Type</th>".
-		"<th>P/T</th>".
-		"<th>Rules Text</th>".
-		"<th>Flavor Text</th>".
-		"<th>Set/Rarity</th>".
+		"<table class='table table-condensed table-hover'><thead>".
+		"<th class='card-thumbnail'>Thumbnail</th>".
+		"<th class='card-name'>Name</th>".
+		"<th class='card-cost'>Mana Cost</th>".
+		"<th class='card-type'>Type</th>".
+		"<th class='card-ptl'>P/T</th>".
+		"<th class='card-rules'>Rules Text</th>".
+		"<th class='card-flavor'>Flavor Text</th>".
+		"<th class='card-rarity'>Set/Rarity</th>".
 		"</thead>".
 		"<tbody>";
 		foreach($cardSet['cards'] as $card) {
 			echo "<tr>";
-			echo "<td><a href='#' data-toggle='modal' data-target='#cardModal' onclick='showCardModal(\"".$card['name']."\",\"".$cardSet['code']."\")'><img src='".str_replace("'","%27","images/sets/".$cardSet['code']."/".str_replace(" ","-",$card['imageName']).".jpg")."' /></a></td>";
-			echo isset($card['name']) ? "<td><a href='#' data-toggle='modal' data-target='#cardModal' onclick='showCardModal(\"".$card['name']."\",\"".$cardSet['code']."\")'>".$card['name']."</a></td>" : "<td></td>";
+			echo "<td class='card-thumbnail'><a href='#' data-toggle='modal' data-target='#cardModal' onclick='showCardModal(\"".strtr($card['name'],array("Æ"=>"&AElig;"))."\",\"".$cardSet['code']."\",\"".$card['imageName']."\")'><img src='".str_replace("'","%27","images/sets/".$cardSet['code']."/".str_replace(" ","-",$card['imageName']).".jpg")."' /></a></td>";
+			echo isset($card['name']) ? "<td class='card-name'><a href='#' data-toggle='modal' data-target='#cardModal' onclick='showCardModal(\"".strtr($card['name'],array("Æ"=>"&AElig;"))."\",\"".$cardSet['code']."\",\"".$card['imageName']."\")'>".strtr($card['name'],array("Æ"=>"&AElig;"))."</a></td>" : "<td></td>";
 			echo isset($card['manaCost']) ? "<td>".strtr($card['manaCost'],array("{"=>"<img src='images/mana/","}"=>".jpg'/>","/W"=>"-W","/R"=>"-R","/B"=>"-B","/U"=>"-U","/G"=>"-G"))."<br /><br /><em>CMC: ".$card['cmc']."</em></td>" : "<td></td>";
 			echo isset($card['type']) ? "<td>".str_replace("—","-",$card['type'])."</td>" : "<td></td>";
 			if(isset($card['power'])) {
-				echo "<td>".$card['power']."/".$card['toughness']."</td>";
+				echo "<td style='text-align:center'>".$card['power']."/".$card['toughness']."</td>";
 			} elseif(isset($card['loyalty'])) {
-				echo "<td><b>&lsaquo;".$card['loyalty']."&rsaquo;</b></td>";
+				echo "<td style='text-align:center'><b>&lsaquo;".$card['loyalty']."&rsaquo;</b></td>";
 			} else {
 				echo "<td></td>";
 			}
 			if(isset($card['text']) && strlen($card['text']) === 1) $card['text'] = "{T}: Add {".$card['text']."} to your mana pool.";
-			echo isset($card['text']) ? "<td>".strtr($card['text'],array("{"=>"<img src='images/mana/","}"=>".jpg'/>","/W"=>"-W","/R"=>"-R","/B"=>"-B","/U"=>"-U","/G"=>"-G","—"=>"-","\n"=>"<br />"))."</td>" : "<td></td>";
-			echo isset($card['flavor']) ? "<td><em>".strtr($card['flavor'],array("—"=>"-"))."</em></td>" : "<td></td>";
+			echo isset($card['text']) ? "<td class='card-rules-td'>".strtr($card['text'],array("{"=>"<img src='images/mana/","}"=>".jpg'/>","/W"=>"-W","/R"=>"-R","/B"=>"-B","/U"=>"-U","/G"=>"-G","—"=>"-","Æ"=>"&AElig;","\n"=>"<br />"))."</td>" : "<td></td>";
+			echo isset($card['flavor']) ? "<td class='card-flavor-td'><em>".strtr($card['flavor'],array("—"=>"-"))."</em></td>" : "<td></td>";
 			echo isset($card['rarity']) ? "<td style='text-align:center;'><img src='images/rarity/".$cardSet['code']."-".substr($card['rarity'],0,1).".jpg'/></td>" : "<td></td>";
 			echo "</tr>";
 		}

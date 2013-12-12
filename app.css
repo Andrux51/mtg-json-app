@@ -1,0 +1,39 @@
+.table>thead>tr>th {
+	background-color:#ccc;
+	border-right:white;
+}
+.table>tbody>tr>td {
+	border-right:1px solid #eee;
+	vertical-align: middle;
+}
+.card-thumbnail {
+	width:100px;
+	text-align:center;
+}
+.card-name {
+	width: 180px;
+}
+.card-cost {
+	width:100px;
+}
+.card-type {
+	width:100px;
+}
+.card-ptl {
+	width:48px;
+}
+.card-rules {
+	width:1000px;
+}
+.card-rules-td {
+
+}
+.card-flavor {
+	width: 300px;
+}
+.card-flavor-td {
+}
+.card-rarity {
+	width: 80px;
+	text-align: center;
+}
