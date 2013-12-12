@@ -19,3 +19,8 @@ $("#navTabs a:first").tab('show');
 // 		$("#test").append("<li>" + key + "</li>");
 // 	}
 // }
+
+function showCardModal(cardName,cardSet) {
+	$("#mTitle").html(cardName);
+	$("#cardImage").attr('src','images/sets/'+cardSet+'-original/'+cardName+'.jpg');
+}
